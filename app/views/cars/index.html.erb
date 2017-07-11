@@ -1,0 +1,24 @@
+<div>
+	<header>
+		<h1>Car rentals list</h1>
+	</header>
+	<div>
+		<%= link_to 'New', new_car_path %>
+	</div>
+	<div>
+		<% @cars.each do |car| %>
+		<ul>
+			<li>
+				<header>
+					<h3><%= link_to car.car_name, car_path(car) %></h3>
+				</header>
+				<ul>
+					<li><%= car.car_type %></li>
+					<li><%= car.car_years %></li>
+					<li><%= number_to_currency(car.car_price) %></li>
+				</ul>
+			</li>
+		</ul>
+		<% end %>
+	</div>
+</div>

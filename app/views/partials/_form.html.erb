@@ -1,0 +1,23 @@
+<%= form_with model: @car do |form| %>
+	<div>
+		<div>
+			<%= form.label :car_name  %>
+			<%= form.text_field :car_name %>
+		</div>
+		<div>
+			<%= form.label :car_type  %>
+			<%= form.text_field :car_type %>
+		</div>
+		<div>
+			<%= form.label :car_years %>
+			<%= form.text_field :car_years %>
+		</div>
+		<div>
+			<%= form.label :car_price %>
+			<%= form.text_field :car_price %>
+		</div>
+		<div>
+			<%= form.submit "Save" %>
+		</div>
+	</div>
+<% end %>

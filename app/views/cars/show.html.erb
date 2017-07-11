@@ -1,0 +1,21 @@
+<div>
+	<h1>
+		<%= @car.car_name %> Information
+	</h1>
+	<div>
+		<ul>
+			<li>
+				Year makes: <%= @car.car_years %>
+			</li>
+			<li>
+				Type: <%= @car.car_type %>
+			</li>
+			<li>
+				Rental Price: <%= number_to_currency(@car.car_price) %>
+			</li>
+		</ul>
+		<div>
+			<%= link_to 'Edit', edit_car_path(@car) %> | <%= link_to 'Delete', car_url(@car), method: :delete, data: {confirm: "Are you sure want to delete #{@car.car_name}?"} %> | <%= link_to 'Back', cars_url %>
+		</div>
+	</div>
+</div>
