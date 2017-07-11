@@ -1,15 +1,16 @@
 class CarsController < ApplicationController
 	before_action :set_car_id, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_owner!, except: :index
 	def index
 		@cars = Car.all
 	end
 
 	def new
-		@car = Car.new
+		@car = current_owner.cars.build
 	end
 
 	def create
-		@car = Car.create(car_params)
+		@car = current_owner.cars.build(car_params)
 
 		if @car.save
 			redirect_to cars_url
@@ -25,7 +26,7 @@ class CarsController < ApplicationController
 	end
 
 	def update
-		if @car.update_attributes(car_params)
+		if current_owner.cars.update_attributes(car_params)
 			redirect_to car_url(@car)
 		else
 			render :edit
@@ -33,14 +34,14 @@ class CarsController < ApplicationController
 	end
 
 	def destroy
-		@car.destroy
+		current_owner.cars.destroy
 		redirect_to cars_url
 	end
 
 	private
 
 	def set_car_id
-		@car = Car.find_by(id: params[:id])
+		@car = current_owner.cars.find_by(id: params[:id])
 	end
 
 	def car_params
